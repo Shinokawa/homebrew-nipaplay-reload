@@ -17,8 +17,8 @@ cask "nipaplay-reload" do
 
   # 可选但推荐：添加一个 zap stanza 来帮助用户彻底卸载
   zap trash: [
-    "~/Library/Application Support/NipaPlay-Reload",
-    "~/Library/Preferences/io.github.mcdfsteve.nipaplay-reload.plist",
-    "~/Library/Saved Application State/io.github.mcdfsteve.nipaplay-reload.savedState",
+  "~/Library/Application Support/NipaPlay",  # 根据应用名
+  "~/Library/Preferences/com.aimessoft.nipaplay.plist",  # 实际 Bundle ID
+  "~/Library/Saved Application State/com.aimessoft.nipaplay.savedState",  # 实际 Bundle ID
   ]
 end
