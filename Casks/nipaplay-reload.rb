@@ -1,12 +1,24 @@
 cask "nipaplay-reload" do
-  version "1.0.0" # 初始版本号，会被自动更新
-  sha256 "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" # 一个空文件的SHA256，会被自动更新
+  version "1.0.0" # 会被自动更新
+  sha256 "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" # 会被自动更新
 
-  url "https://github.com/MCDFsteve/NipaPlay-Reload/releases/download/v#{version}/NipaPlay-Reload-v#{version}-macos.zip"
+  # --- 修改这里 --- #
+  # URL 指向 .dmg 文件，并且文件名与您的构建脚本匹配
+  url "https://github.com/MCDFsteve/NipaPlay-Reload/releases/download/v#{version}/NipaPlay_#{version}_macOS_Universal.dmg",
+      verified: "github.com/MCDFsteve/NipaPlay-Reload/"
+  # ---------------- #
+
   name "NipaPlay-Reload"
   homepage "https://github.com/MCDFsteve/NipaPlay-Reload"
 
-  app "NipaPlay-Reload.app"
+  # app 名称需要与 .dmg 文件中的 .app 名称一致
+  # 根据您的 dmg.sh 脚本，应用名应该是 NipaPlay.app
+  app "NipaPlay.app" 
 
-  auto_updates true
+  # 可选但推荐：添加一个 zap stanza 来帮助用户彻底卸载
+  zap trash: [
+    "~/Library/Application Support/NipaPlay-Reload",
+    "~/Library/Preferences/io.github.mcdfsteve.nipaplay-reload.plist",
+    "~/Library/Saved Application State/io.github.mcdfsteve.nipaplay-reload.savedState",
+  ]
 end
